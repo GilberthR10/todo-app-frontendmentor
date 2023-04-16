@@ -20,10 +20,11 @@ export default {
       },
       colors: {
         'primary': 'hsl(220 98% 61%)',
-        'very-light-gray': 'hsl(var(--very-light-gray) / <alpha-value>)',
-        'very-dark-blue': 'hsl(var(--very-dark-blue) / <alpha-value>)',
+        'very-dark-blue': 'hsl(235deg, 21%, 11%)',
         'linear-blue': 'hsl(192, 100%, 67%)',
         'linear-pink': 'hsl(280, 87%, 65%)',
+        'dark-grayish-blue': 'hsl(235, 24%, 19%)',
+        'grayish': 'hsl(235, 24%, 19%)',
       }
     },
   },

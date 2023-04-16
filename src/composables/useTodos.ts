@@ -1,30 +1,34 @@
-import { storeToRefs } from "pinia";
-import { useTodosStore } from "@/stores/todos";
-import type { Todo } from '@/types/todo';
-import { computed, ref, watchEffect } from "vue";
-
+import { storeToRefs } from 'pinia'
+import { useTodosStore } from '@/stores/todos'
+import type { Todo } from '@/types/todo'
+import { ref, watchEffect } from 'vue'
 
 const useTodoList = () => {
-  const store = useTodosStore();
+  const store = useTodosStore()
 
-  const { currentTodoList, todoList, todoRemaining, todoListActive, todoListCompleted } = storeToRefs(store);
+  const {
+    currentTodoList,
+    todoList,
+    todoRemaining,
+    todoListActive,
+    todoListCompleted,
+  } = storeToRefs(store)
 
-  const listItems = ref<Todo[]>()
+  const listItems = ref<Todo[]>([])
 
   watchEffect(() => {
     switch (currentTodoList.value) {
       case 2:
-        listItems.value = todoListActive.value;
-        break;
+        listItems.value = todoListActive.value
+        break
       case 3:
-        listItems.value = todoListCompleted.value;
-        break;
+        listItems.value = todoListCompleted.value
+        break
       default:
-        listItems.value = todoList.value;
-        break;
+        listItems.value = todoList.value
+        break
     }
-  });
-
+  })
 
   return {
     // Properties
@@ -33,12 +37,12 @@ const useTodoList = () => {
 
     // Methods
     setActiveTodoList(activeList: number) {
-      store.setActiveTodoList(activeList);
+      store.setActiveTodoList(activeList)
     },
     addTodo(todo: Todo) {
-      store.addTodo(todo);
+      store.addTodo(todo)
     },
-    deleteTodo(id: string){
+    deleteTodo(id: string) {
       store.deleteTodo(id)
     },
     editTodo(todo: Todo) {
@@ -50,12 +54,15 @@ const useTodoList = () => {
     clearCompleteTodo() {
       store.clearCompleteTodo()
     },
+    updateTodoList(todoList: Todo[]) {
+      store.updateTodoList(todoList)
+    },
     // Getters
     todoListActive,
     todoListCompleted,
     todoRemaining,
-    listItems
-  };
-};
+    listItems,
+  }
+}
 
-export default useTodoList;
+export default useTodoList
